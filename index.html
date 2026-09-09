@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0610">
+<meta name="description" content="Dorama Onn — seu mundo de doramas. Escolha sua próxima história.">
+<title>Dorama Onn — Seu mundo de doramas</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Parisienne&display=swap');
+
+:root {
+  --bg:#09050d;
+  --bg2:#120816;
+  --pink:#f45ba8;
+  --pink2:#ff94cb;
+  --pink3:#ffd8ec;
+  --purple:#8c3cae;
+  --text:#fff8fc;
+  --muted:#c9adbf;
+  --line:rgba(255,105,184,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--text);font-family:Montserrat,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 50% -10%,rgba(239,73,170,.28),transparent 34%),
+    radial-gradient(circle at 0% 55%,rgba(128,45,164,.16),transparent 28%),
+    var(--bg);
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.20;
+  background-image:
+    radial-gradient(circle at 12% 18%,#ff9bd0 0 2px,transparent 3px),
+    radial-gradient(circle at 87% 26%,#ff9bd0 0 2px,transparent 3px),
+    radial-gradient(circle at 75% 80%,#d66fff 0 2px,transparent 3px);
+  background-size:180px 210px,230px 250px,260px 280px;
+}
+a{color:inherit;text-decoration:none}
+.nav{
+  width:min(1200px,calc(100% - 34px));height:80px;margin:auto;
+  display:flex;align-items:center;justify-content:space-between;gap:22px;position:relative;z-index:5
+}
+.brand{display:flex;align-items:center;gap:9px;min-width:210px}
+.brand-icon{
+  width:54px;height:54px;border-radius:50%;display:grid;place-items:center;
+  border:2px solid #ff8ec9;background:radial-gradient(circle,#fff 0 28%,#ffe5f3 29% 42%,#5d1c70 43% 100%);
+  color:#c34b9b;font-size:23px;box-shadow:0 0 24px rgba(255,115,191,.28)
+}
+.brand-text{font-family:"Cormorant Garamond",serif;font-weight:700;font-size:28px;line-height:.75}
+.brand-text em{font-family:"Cormorant Garamond",Georgia,serif;color:var(--pink2);font-style:italic;letter-spacing:1px;font-size:35px;font-weight:400}
+.menu{display:flex;gap:27px;font-size:15px;color:#f3dce9}
+.menu a{padding:7px 0}
+.menu .active{color:var(--pink2);border-bottom:2px solid var(--pink)}
+.pill{border:1px solid var(--line);padding:11px 15px;border-radius:999px;background:rgba(255,100,180,.10);font-size:12px;font-weight:800;color:#ffd8ec;white-space:nowrap}
+.hero{
+  min-height:330px;padding:48px 20px 55px;text-align:center;position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 72% 42%,rgba(255,120,195,.24),transparent 27%),
+    radial-gradient(circle at 28% 50%,rgba(138,53,166,.20),transparent 31%);
+}
+.hero:after{content:"🌸";position:absolute;right:7%;top:20%;font-size:130px;opacity:.12;transform:rotate(20deg)}
+.hero small{font:24px "Cormorant Garamond",serif;color:#ffe5f2}
+.hero h1{font:600 clamp(55px,8vw,90px) "Cormorant Garamond",serif;line-height:.78;letter-spacing:-2px;margin:15px 0 22px}
+.hero h1 em{font:400 clamp(58px,8vw,94px "Cormorant Garamond",Georgia,serif);color:var(--pink2);font-style:italic;letter-spacing:1px}
+.hero p{font:22px "Cormorant Garamond",serif;line-height:1.15;color:#f9ddea;margin:0 0 25px}
+.features{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;font-size:14px;font-weight:600;color:#f7ddea}
+.wrap{width:min(1200px,calc(100% - 34px));margin:auto}
+.tools{display:flex;gap:13px;align-items:center;flex-wrap:wrap;margin:8px 0 27px}
+.search{
+  flex:1;min-width:240px;padding:14px 20px;border-radius:999px;
+  border:1px solid #d75ca3;background:rgba(10,4,14,.72);color:#fff;outline:none;font-size:13px
+}
+.search::placeholder{color:#b989aa}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter{border:1px solid #d75ca3;background:transparent;color:#f8dceb;padding:11px 16px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer}
+.filter.active,.filter:hover{background:#ff8bc9;color:#2b0a22}
+.head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:18px}
+.head h2{font:600 39px "Cormorant Garamond",serif;margin:0}
+.head h2:before{content:"♥";font-family:Arial;color:var(--pink);font-size:24px;margin-right:10px}
+.head p{font:18px "Cormorant Garamond",serif;color:var(--muted);margin:3px 0 0}
+.count{font-size:13px;color:#dba7cb;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;padding-bottom:72px}
+.card{
+  border:1px solid #df5cad;border-radius:14px;overflow:hidden;background:#130a17;
+  box-shadow:0 12px 30px rgba(0,0,0,.34);transition:transform .22s,box-shadow .22s,border-color .22s
+}
+.card:hover{transform:translateY(-5px);border-color:#ff9bd2;box-shadow:0 18px 45px rgba(238,78,170,.22)}
+.poster{position:relative;aspect-ratio:3/4;overflow:hidden;background:#201027}
+.poster img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .35s}
+.card:hover .poster img{transform:scale(1.035)}
+.badge{position:absolute;z-index:2;left:8px;top:8px;width:31px;height:31px;border-radius:50%;display:grid;place-items:center;background:#ff83c4;color:#4a1239;font-size:10px;font-weight:800;box-shadow:0 3px 12px #0008}
+.empty{display:none;text-align:center;padding:40px;color:var(--muted);grid-column:1/-1}
+.quote{text-align:center;padding:55px 20px 75px;background:radial-gradient(circle,rgba(231,79,166,.16),transparent 54%)}
+.script{font:45px "Cormorant Garamond",Georgia,serif;color:#ff9ed0;font-style:italic;font-weight:600;letter-spacing:2px}
+.quote h3{font:600 43px "Cormorant Garamond",serif;color:#fff;margin:0 0 14px;letter-spacing:.3px}
+.quote p{color:var(--muted);font-size:15px;line-height:1.6;margin:5px 0}
+
+.about-section,.faq-section{width:min(900px,calc(100% - 34px));margin:0 auto;text-align:center;padding:70px 20px;}
+.about-section{background:radial-gradient(circle,rgba(231,79,166,.12),transparent 65%);}
+.about-section h3{font:600 42px "Cormorant Garamond",serif;margin:8px 0 12px;color:#fff;}
+.about-section p{font:20px "Cormorant Garamond",serif;line-height:1.35;color:var(--muted);margin:6px 0;}
+.about-section strong em{color:var(--pink2);}
+.section-kicker{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--pink2);margin-bottom:7px;}
+.faq-section h2{font:600 43px "Cormorant Garamond",serif;margin:0 0 25px;}
+.faq-list{max-width:780px;margin:auto;text-align:left;display:grid;gap:13px;}
+.faq-list details{border:1px solid var(--line);border-radius:13px;background:rgba(23,12,27,.82);padding:0 20px;transition:.2s;}
+.faq-list details[open]{border-color:rgba(255,148,203,.7);box-shadow:0 12px 35px rgba(238,78,170,.10);}
+.faq-list summary{cursor:pointer;list-style:none;padding:19px 3px;font-size:16px;font-weight:700;color:#fff;}
+.faq-list summary::-webkit-details-marker{display:none;}
+.faq-list summary:after{content:"+";float:right;color:var(--pink2);font-size:20px;}
+.faq-list details[open] summary:after{content:"−";}
+.faq-list p{color:var(--muted);font-size:14px;line-height:1.7;padding:0 3px 20px;margin:0;}
+
+.contact-title{font:600 22px "Cormorant Garamond",serif;color:#fff;margin:12px 0 10px;}
+.contact-item{font-size:14px;margin:7px 0;color:var(--muted);}
+.contact-item a{color:var(--pink2);font-weight:700;}
+.contact-note{margin-top:18px;color:#bda4b7;font-size:11px;}
+footer{border-top:1px solid var(--line);padding:36px 20px 48px;text-align:center;color:#bda4b7;font-size:11px}
+.footer-brand{font:700 32px "Cormorant Garamond",serif;color:#fff;margin-bottom:8px}
+.footer-brand em{font:400 37px Parisienne,cursive;color:var(--pink2)}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:780px){
+  .nav{height:68px}.menu{display:none}.brand{min-width:0}.pill{font-size:9px;padding:9px 11px}
+  .hero{min-height:285px;padding-top:38px}.hero h1{font-size:57px}.hero h1 em{font-size:63px}.hero p{font-size:19px}
+  .features{gap:13px;font-size:10px}.head h2{font-size:32px}.head p{font-size:16px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:11px}.card{border-radius:12px}
+  .about-section,.faq-section{padding:52px 10px}.about-section h3{font-size:35px}.about-section p{font-size:18px}.faq-section h2{font-size:35px}.faq-list summary{font-size:14px}.faq-list p{font-size:13px}}
+
+.brand-logo{
+  width:58px;
+  height:58px;
+  object-fit:cover;
+  display:block;
+  border-radius:50%;
+  aspect-ratio:1/1;
+  box-shadow:0 0 0 2px rgba(255,148,203,.65), 0 0 18px rgba(244,91,168,.28);
+}
+.brand{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+@media(max-width:700px){
+  .brand-logo{width:50px;height:50px}
+}
+
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#catalogo" aria-label="Dorama ONN">
+    <img class="brand-logo" src="https://i.postimg.cc/PNTGsPvV/DORAMA-ON.png" alt="Dorama ONN">
+  </a>
+  <nav class="menu">
+    <a class="active" href="#catalogo">Catálogo</a><a href="#sobre">Sobre</a>
+    <a href="#duvidas">Dúvidas</a><a href="#contato">Contato</a>
+  </nav>
+  <a class="pill" href="#catalogo">♥ MEU MUNDO DE DORAMAS</a>
+</header>
+
+<section class="hero">
+  <div>
+    <small>Bem-vindo ao</small>
+    <h1>Dorama <em>Onn</em></h1>
+    <p>Histórias que emocionam,<br>para corações que sonham!</p>
+    <div class="features">
+      <span>♛ Séries completas</span><span>♥ Acesso imediato</span><span>▶ Pagamento seguro</span>
+    </div>
+  </div>
+</section>
+
+<main class="wrap" id="catalogo">
+  <div class="tools">
+    <input id="search" class="search" type="search" placeholder="⌕  Buscar sua próxima história..." aria-label="Buscar série">
+    <div class="filters">
+      <button class="filter active" data-filter="todos">Todos</button>
+      <button class="filter" data-filter="romance">Romance</button>
+      <button class="filter" data-filter="fantasia">Fantasia</button>
+      <button class="filter" data-filter="drama">Drama</button>
+      <button class="filter" data-filter="acao">Ação</button>
+    </div>
+  </div>
+
+  <div class="head">
+    <div><h2>Nosso Catálogo</h2><p>Escolha sua próxima história e viva grandes emoções!</p></div>
+    <div class="count" id="count">13 séries disponíveis</div>
+  </div>
+
+  <section class="grid" id="grid">
+    <a class="card" href="https://pay.lowify.com.br/checkout?product_id=kc2KGG" target="_blank" rel="noopener noreferrer" data-title="o grande e poderoso gênio">
+      <div class="poster">
+        <span class="badge">01</span>
+        <img src="https://i.postimg.cc/fW6Lykrs/68b969c8-b9a1-4194-be47-f374146b3d82.png" alt="O Grande e Poderoso Gênio" loading="lazy">
+      </div>
+    </a>
+<a class="card" href="https://pay.lowify.com.br/checkout?product_id=plkWMF" target="_blank" rel="noopener noreferrer" data-title="contrato com o don: de babá a esposa">
+      <div class="poster">
+        <span class="badge">02</span>
+        <img src="https://i.postimg.cc/RVbXCwWV/4015a5b5-bd5e-49b4-a5c2-51ad29e7e7d1.png" alt="Contrato com o Don: de Babá a Esposa" loading="lazy">
+      </div>
+    </a>
+<a class="card" href="https://pay.lowify.com.br/checkout?product_id=8Cx6H5" target="_blank" rel="noopener noreferrer" data-title="casada com o rei dragão">
+      <div class="poster">
+        <span class="badge">03</span>
+        <img src="https://i.postimg.cc/P5C0cKCY/Chat-GPT-Image-30-de-ago-de-2026-11-57-32.png" alt="Casada com o Rei Dragão" loading="lazy">
+      </div>
+    </a>
+<a class="card" href="https://pay.lowify.com.br/checkout?product_id=UBXPDn" target="_blank" rel="noopener noreferrer" data-title="o doutor que marcou meu destino">
+      <div class="poster">
+        <span class="badge">04</span>
+        <img src="https://i.postimg.cc/tTgvY16S/IMAGEM-(2).png" alt="O Doutor que Marcou Meu Destino" loading="lazy">
+      </div>
+    </a>
+<a class="card" href="https://pay.lowify.com.br/checkout?product_id=slri8j" target="_blank" rel="noopener noreferrer" data-title="meu elfo, meu amor">
+      <div class="poster">
+        <span class="badge">05</span>
+        <img src="https://i.postimg.cc/Y0RQpsy8/IMAGEM.png" alt="Meu Elfo, Meu Amor" loading="lazy">
+      </div>
+    </a>
+<a class="card" href="https://pay.lowify.com.br/checkout?product_id=aq0x90" target="_blank" rel="noopener noreferrer" data-title="o rei sem alcance">
+      <div class="poster">
+        <span class="badge">06</span>
+        <img src="https://i.postimg.cc/kgzKX8wT/IMAGEM.png" alt="O Rei Sem Alcance" loading="lazy">
+      </div>
+    </a>
+<a class="card" href="https://pay.lowify.com.br/checkout?product_id=ajeGSZ" target="_blank" rel="noopener noreferrer" data-title="a extraordinária mãe do bilionário">
+      <div class="poster">
+        <span class="badge">07</span>
+        <img src="https://i.postimg.cc/prsnNnp6/IMAGEM.png" alt="A Extraordinária Mãe do Bilionário" loading="lazy">
+      </div>
+    </a>
+<a class="card" href="https://pay.lowify.com.br/checkout?product_id=8zDxrA" target="_blank" rel="noopener noreferrer" data-title="a herdeira que bloqueou o marido">
+      <div class="poster">
+        <span class="badge">08</span>
+        <img src="https://i.postimg.cc/3x406N71/IMAGEM.png" alt="A Herdeira que Bloqueou o Marido" loading="lazy">
+      </div>
+    </a>
+<a class="card" href="https://pay.lowify.com.br/checkout?product_id=xh8yWX" target="_blank" rel="noopener noreferrer" data-title="a valquíria e o divórcio com o deus da guerra">
+      <div class="poster">
+        <span class="badge">09</span>
+        <img src="https://i.postimg.cc/4yyx92xw/IMAGEM.png" alt="A Valquíria e o Divórcio com o Deus da Guerra" loading="lazy">
+      </div>
+    </a>
+<a class="card" href="https://pay.lowify.com.br/checkout?product_id=vwhEys" target="_blank" rel="noopener noreferrer" data-title="minha visão de raio-x vê bem através de você">
+      <div class="poster">
+        <span class="badge">10</span>
+        <img src="https://i.postimg.cc/vZfHfVbJ/IMAGEM.png" alt="Minha Visão de Raio-X Vê Bem Através de Você" loading="lazy">
+      </div>
+    </a>
+<a class="card" href="https://pay.lowify.com.br/checkout?product_id=oKyOza" target="_blank" rel="noopener noreferrer" data-title="como chutar um craque da bola">
+      <div class="poster">
+        <span class="badge">11</span>
+        <img src="https://i.postimg.cc/wvf6g5Qm/IMAGEM.png" alt="Como Chutar um Craque da Bola" loading="lazy">
+      </div>
+    </a>
+<a class="card" href="https://pay.lowify.com.br/checkout?product_id=0WeEho" target="_blank" rel="noopener noreferrer" data-title="seduzida pelo fazendeiro pai solteiro">
+      <div class="poster">
+        <span class="badge">12</span>
+        <img src="https://i.postimg.cc/RFJFDH4T/IMAGEM.png" alt="Seduzida Pelo Fazendeiro Pai Solteiro" loading="lazy">
+      </div>
+    </a>
+<a class="card" href="https://pay.lowify.com.br/checkout?product_id=tnVuWK" target="_blank" rel="noopener noreferrer" data-title="rasteje, mortal: a deusa do mar desperta">
+      <div class="poster">
+        <span class="badge">13</span>
+        <img src="https://i.postimg.cc/d3ZKFb0N/IMAGEM.png" alt="Rasteje, Mortal: A Deusa do Mar Desperta" loading="lazy">
+      </div>
+    </a>
+    <div class="empty" id="empty">Nenhuma série encontrada. Tente outro nome. ♡</div>
+  </section>
+</main>
+
+<section class="about-section" id="sobre">
+<h3>Dorama ONN</h3>
+  <p>Seu cantinho de <strong><em>doramas</em></strong> que tocam o coração em qualquer lugar ♡</p>
+  <p>Histórias para rir, suspirar, se emocionar e se apaixonar.</p>
+</section>
+
+<section class="faq-section" id="duvidas">
+  <div class="section-kicker">♡ TIRE SUAS DÚVIDAS</div>
+  <h2>Perguntas Frequentes</h2>
+  <div class="faq-list">
+    <details open>
+      <summary>Como recebo meu acesso após a compra?</summary>
+      <p>Após a compra, você recebe acesso diretamente no seu WhatsApp e E-mail de cadastro na compra. Nosso sistema é automatizado: assim que seu Pix for confirmado, você recebe uma mensagem imediata com o link exclusivo para assistir todos os episódios.</p>
+    </details>
+    <details>
+      <summary>Quais são as formas de pagamento aceitas?</summary>
+      <p>O pagamento é realizado exclusivamente via Pix no valor promocional de apenas R$ 4,99, com aprovação instantânea e liberação imediata no seu WhatsApp e E-mail cadastrados.</p>
+    </details>
+  </div>
+</section>
+
+<footer id="contato">
+  <div class="footer-brand">Dorama <em>Onn</em></div>
+  <div class="contact-title">Atendimento</div>
+  <div class="contact-item">E-mail: <a href="mailto:doramaonn@gmail.com">doramaonn@gmail.com</a></div>
+  <div class="contact-item">Instagram: <a href="https://www.instagram.com/doramaonn/" target="_blank" rel="noopener noreferrer">@doramaonn</a></div>
+  <div class="contact-note">♡ Estamos aqui para ajudar você</div>
+</footer>
+
+<script>
+const search = document.getElementById('search');
+const cards = [...document.querySelectorAll('.card')];
+const empty = document.getElementById('empty');
+const count = document.getElementById('count');
+const filters = [...document.querySelectorAll('.filter')];
+let active = 'todos';
+
+const categories = {
+  1:['romance','fantasia'], 2:['romance','drama'], 3:['romance','fantasia'],
+  4:['romance','drama'], 5:['romance','fantasia'], 6:['fantasia','acao'],
+  7:['drama','romance'], 8:['drama','romance'], 9:['fantasia','acao'],
+  10:['acao','fantasia'], 11:['acao','drama'], 12:['romance','drama'], 13:['fantasia','romance']
+};
+
+function render() {
+  const q = search.value.toLowerCase().trim();
+  let visible = 0;
+  cards.forEach((card) => {
+    const title = card.dataset.title;
+    const id = Number(card.querySelector('.badge').textContent);
+    const matchSearch = !q || title.includes(q);
+    const matchFilter = active === 'todos' || (categories[id] || []).includes(active);
+    const show = matchSearch && matchFilter;
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  empty.style.display = visible ? 'none' : 'block';
+  count.textContent = visible + (visible === 1 ? ' série disponível' : ' séries disponíveis');
+}
+
+search.addEventListener('input', render);
+filters.forEach(btn => btn.addEventListener('click', () => {
+  filters.forEach(x => x.classList.remove('active'));
+  btn.classList.add('active');
+  active = btn.dataset.filter;
+  render();
+}));
+</script>
+</body>
+</html>
